@@ -1,27 +1,42 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <component v-for="componentName in subComponentNames" :key="componentName" :is="componentName" />
+  <div>
+    <img alt="Vue logo" src="./assets/logo.png" />
+      <component
+        v-for="component in remoteComponents"
+        :key="component.name"
+        :is="component.name"
+      />
+  </div>
 </template>
 
 <script>
-import { reactive } from '@vue/runtime-core'
-import { getAllSubComponents, convertComponentTag } from '../sub/index'
-
-const subComponents = getAllSubComponents()
-console.log(document.runtimePath)
+import { reactive } from "@vue/reactivity";
+import { convertComponentTag } from "../sub/index";
+import { useRemoteComponentManager } from "./utils/loadComponent";
+import { onMounted } from "@vue/runtime-core";
 
 export default {
-  name: 'App',
-  components: subComponents,
+  name: "App",
   setup() {
-    const subComponentNames =  reactive(Object.keys(subComponents).map(name => convertComponentTag(name)))
-    return {
-      subComponentNames
-    }
-    // return () => h('div', {id: 'container'}, subComponentTags.map(tag => h(convertComponentTag(tag))))
-  }
+    const {
+      registryRemoteComponent,
+      fetchRemoteComponents,
+    } = useRemoteComponentManager();
 
-}
+    let remoteComponents = reactive([]);
+
+    onMounted(async () => {
+      const list = await fetchRemoteComponents();
+      Promise.all(list.map(c => registryRemoteComponent(c))).then(() => {
+        remoteComponents.push(...list.map(item => ({name: convertComponentTag(item.name)})))
+      })
+    })
+
+    return {
+      remoteComponents,
+    }
+  },
+};
 </script>
 
 <style>
