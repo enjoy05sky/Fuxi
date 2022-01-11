@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-sub": "node ./sub/build.js"
+    "build-sub": "node ./sub/build.js",
+    "serve-sub": "static-server ./dist",
+    "sub-test": "vue-cli-service build --target lib --name hello src/components/HelloWorld.vue "
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -20,7 +22,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
-    "html-webpack-plugin": "^5.5.0"
+    "html-webpack-plugin": "^5.5.0",
+    "postcss-selector-namespace": "^3.0.1"
   },
   "eslintConfig": {
     "root": true,
