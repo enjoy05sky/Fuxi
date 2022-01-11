@@ -1,6 +1,8 @@
 <template>
-    <div class="sub-a" @click="clickHandler">{{textRef}}</div>
-    <img src="@/assets/logo.png" />
+    <div>
+        <div class="container" @click="clickHandler">{{textRef}}</div>
+        <img src="@/assets/logo.png" />
+    </div>
 </template>
 <script>
 import { ref } from '@vue/reactivity'
@@ -17,6 +19,11 @@ export default {
     },
 }
 </script>
+<style>
+body {
+    font-size: 20px;
+}
+</style>
 <style scoped>
 .sub-a {
     color: red;

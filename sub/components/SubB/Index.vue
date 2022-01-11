@@ -1,5 +1,5 @@
 <template>
-    <div class="sub-b">{{textRef}}</div>
+    <div class="container">{{textRef}}</div>
 </template>
 <script>
 import { ref } from '@vue/reactivity'
