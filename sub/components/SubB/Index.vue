@@ -1,10 +1,14 @@
 <template>
-    <div class="container">{{textRef}}</div>
+    <div>
+        <div class="container">{{textRef}}</div>
+        <img src="@/assets/logoB.png" alt="B" />
+    </div>
 </template>
 <script>
 import { ref } from '@vue/reactivity'
 export default {
     setup() {
+        window.aaa = 321;
         let textRef = ref('b section')
         return {
             textRef
@@ -13,7 +17,7 @@ export default {
 }
 </script>
 <style scoped>
-.sub-b {
+.container {
     color: blue;
 }
 </style>

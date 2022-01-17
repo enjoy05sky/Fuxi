@@ -1,8 +1,12 @@
 export default class MultipleProxySandbox {
-    updatedValueSet  = new Set()
+  updatedValueSet  = new Set()
+
+  needBindFuncList = ['fetch', 'setTimeout', 'setInterval']
+
   active() {
     this.sandboxRunning = true;
   }
+
   inactive() {
     this.sandboxRunning = false;
   }
@@ -42,7 +46,7 @@ export default class MultipleProxySandbox {
         // eslint-disable-next-line no-undef
         // if (name === Symbol.unscopables) return unscopables;
 
-        if(name === 'fetch' || name === 'setTimeout') return rawWindow[name].bind(rawWindow)
+        if(this.needBindFuncList.includes(name)) return rawWindow[name].bind(rawWindow)
 
         // widow, self 返回全局代理
         if (name === 'window' || name === 'self') {

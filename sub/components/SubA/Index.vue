@@ -7,11 +7,17 @@
 <script>
 import { ref } from '@vue/reactivity'
 export default {
+    name: "SubA",
     setup() {
+        window.aaa = 123;
         let textRef = ref('this is a text')
         const clickHandler = () => {
             textRef.value = 'this is text A'
+            // eslint-disable-next-line no-undef
+            fetch(__webpack_public_path__ + '/asa')
         }
+
+        console.log(setTimeout(clickHandler, 3000))
         return {
             textRef,
             clickHandler
@@ -25,7 +31,7 @@ body {
 }
 </style>
 <style scoped>
-.sub-a {
+.container {
     color: red;
 }
 </style>
