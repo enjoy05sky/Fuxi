@@ -5,6 +5,9 @@ function resolve(dir) {
 }
 
 module.exports = {
+  css: {
+    extract: false
+  },
   chainWebpack: (config) => {
     config.resolve.alias
       .set("@", resolve("src"))

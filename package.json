@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "build-sub": "node ./sub/build.js",
-    "serve-sub": "static-server ./dist",
-    "sub-test": "vue-cli-service build --target lib --name hello src/components/HelloWorld.vue "
+    "serve-sub": "static-server ./dist -c *"
   },
   "dependencies": {
     "core-js": "^3.6.5",
