@@ -36,7 +36,7 @@ const buildVueComponentFile = ({name: vueComponentName, path: vueComponentPath})
 }
 
 const rootDirPath = path.resolve(__dirname, './components')
-const vueFileList = queryVueComponentFiles(rootDirPath, /^Index.vue$/)
+const vueFileList = queryVueComponentFiles(rootDirPath, /^index.js$/)
 try {
     vueFileList.forEach(buildVueComponentFile)
 } catch(err) {
